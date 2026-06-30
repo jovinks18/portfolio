@@ -21,7 +21,7 @@ const contactIcon: Record<string, ReactNode> = {
  * free Access Key, and paste it below. Until you do, this does nothing and
  * the resume still opens normally.
  */
-const RESUME_NOTIFY_KEY = "YOUR_WEB3FORMS_ACCESS_KEY"; // EDIT
+const RESUME_NOTIFY_KEY = "d07c9802-9612-4513-b777-116896613ff0"; // EDIT
 function pingResumeOpen() {
   if (!RESUME_NOTIFY_KEY || RESUME_NOTIFY_KEY.startsWith("YOUR_")) return;
   try {
