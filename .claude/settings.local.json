@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx tsc *)",
+      "Bash(npm install *)",
+      "WebSearch",
+      "WebFetch(domain:commons.wikimedia.org)",
+      "Bash(mkdir -p \"/Users/jovin/Desktop/jovin-portfolio 2/public/nav\")",
+      "Bash(curl -sL -o haas-logo.svg \"https://upload.wikimedia.org/wikipedia/commons/d/df/Berkeley-Haas_School_of_Business_Logo.svg\")",
+      "Bash(curl -sL -o marcus-aurelius.jpg \"https://upload.wikimedia.org/wikipedia/commons/6/67/Marcus_Aurelius_%28bust%29.jpg\")",
+      "WebFetch(domain:www.makipeople.com)",
+      "Bash(curl -sL -o abinbev-logo.svg \"https://upload.wikimedia.org/wikipedia/commons/7/7a/Anheuser-Busch_InBev_-_logo_%28Belgium%2C_2022-%29.svg\")",
+      "Bash(curl -sL -o maki-logo.svg \"https://cdn.prod.website-files.com/68da3266491c8154afb5cb9b/68da3b09d4c1aee7dd81a575_logo-maki.svg\")",
+      "WebFetch(domain:unsplash.com)"
+    ]
+  }
+}

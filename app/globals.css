@@ -1,0 +1,1068 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-cream-50 text-ink font-body antialiased;
+    background-image: radial-gradient(
+      rgba(44, 42, 38, 0.035) 1px,
+      transparent 1px
+    );
+    background-size: 24px 24px;
+  }
+  ::selection {
+    @apply bg-butter-soft text-ink;
+  }
+}
+
+/* Intro loader: letters blur in sequence */
+.intro-loading span {
+  display: inline-block;
+  animation: intro-blur 1.5s calc(var(--i) / 5 * 1s) alternate infinite;
+}
+
+@keyframes intro-blur {
+  to {
+    filter: blur(5px);
+    opacity: 0.4;
+  }
+}
+
+/* ───────────────────────────────────────────────────────────────
+   CINEMATIC SCROLL EXPERIENCE  (city frame expand + stacked panels)
+   ─────────────────────────────────────────────────────────────── */
+
+.cine {
+  --cream: #f9f4eb;
+  --ink: #141414;
+  background: var(--cream);
+  color: var(--ink);
+  overflow-x: hidden;
+}
+
+.cine h1,
+.cine h2 {
+  text-transform: uppercase;
+  font-family: var(--font-condensed), "Barlow Condensed", sans-serif;
+  font-weight: 900;
+  line-height: 0.85;
+  letter-spacing: -0.01em;
+}
+
+.cine a,
+.cine p,
+.cine .meta {
+  font-family: var(--font-grotesk), "Host Grotesk", system-ui, sans-serif;
+}
+
+/* --- Entry frame (effect A) --- */
+.intro-backdrop,
+.intro-img {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100svh;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.intro-img {
+  background: #1b2733; /* shows briefly while the entry image loads */
+}
+.intro-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.intro-frame,
+.intro-nav {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+  min-width: 720px;
+  aspect-ratio: 16 / 9;
+  will-change: width, height;
+}
+
+.intro-frame {
+  background: var(--cream);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.intro-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  z-index: 3;
+}
+
+.intro-links {
+  position: relative;
+  width: 50%;
+  display: flex;
+  justify-content: space-between;
+}
+.intro-links:nth-child(1) {
+  padding: 2.5rem 5rem 0 2.5rem;
+}
+.intro-links:nth-child(2) {
+  padding: 2.5rem 2.5rem 0 5rem;
+}
+
+.intro-links a {
+  color: var(--ink);
+  text-decoration: none;
+  font-size: 1.05rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+.intro-links a:hover {
+  opacity: 0.6;
+}
+
+.intro-logo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  padding: 1.5rem;
+  text-align: center;
+  pointer-events: all;
+  z-index: 3;
+}
+.intro-logo.pinned {
+  top: -0.25rem;
+  transform: translateX(-50%);
+}
+.intro-logo a {
+  font-family: var(--font-condensed), "Barlow Condensed", sans-serif;
+  font-weight: 900;
+  text-transform: uppercase;
+  font-size: clamp(1.5rem, 4vw, 3rem);
+  color: var(--ink);
+  text-decoration: none;
+  letter-spacing: 0.02em;
+}
+
+.intro-langs {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.32em;
+  margin-top: 0.6rem;
+}
+.intro-langs span {
+  font-family: var(--font-condensed), "Barlow Condensed", sans-serif;
+  font-weight: 900;
+  text-transform: uppercase;
+  font-size: clamp(1.5rem, 4vw, 3rem);
+  line-height: 1.05;
+  color: var(--ink);
+}
+
+.intro-scroll-hint {
+  position: fixed;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  font-family: var(--font-grotesk), system-ui, sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* spacer that gives the intro room to expand before panels begin */
+.intro-spacer {
+  height: 200svh;
+}
+
+/* --- Stacked panels (effect B) --- */
+.panels {
+  position: relative;
+  z-index: 2;
+}
+
+.panel {
+  position: relative;
+  width: 100vw;
+  min-height: 100dvh;
+  overflow: hidden;
+  /* deliberate dark backdrop: the tilted panel reveals this as it sweeps
+     in, so the diagonal edge reads as intentional (not an empty gap) */
+  background: #0f0d0b;
+}
+
+/* No fill layer — the original effect needs the tilted block to reveal
+   the dark backdrop behind it as it sweeps in. */
+.panel .bg {
+  display: none;
+}
+
+/* The colored panel itself tilts in (the original movement).
+   Pinned exactly to its panel box with inset:0 — no inherited width to get
+   wrong — so when settled (rotate 0) it covers the screen edge to edge. */
+.panel .stage {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  padding: clamp(1.75rem, 4vw, 4rem);
+  display: flex;
+  align-items: center;
+  gap: clamp(1.5rem, 4vw, 4rem);
+  transform: rotate(25deg);
+  transform-origin: bottom left;
+  will-change: transform;
+}
+
+.panel.cream .bg,
+.panel.cream .stage { background: #ece4d3; }
+.panel.cream .stage { color: #141414; }
+.panel.sage .bg,
+.panel.sage .stage { background: #5c6b53; }
+.panel.sage .stage { color: #f4efe6; }
+.panel.dark .bg,
+.panel.dark .stage { background: #14202b; }
+.panel.dark .stage { color: #f4efe6; }
+.panel.violet .bg,
+.panel.violet .stage { background: #4a4f7a; }
+.panel.violet .stage { color: #f4efe6; }
+.panel.amber .bg,
+.panel.amber .stage { background: #e2553f; }
+.panel.amber .stage { color: #f4efe6; }
+.panel.ink .bg,
+.panel.ink .stage { background: #141414; }
+.panel.ink .stage { color: #f9f4eb; }
+/* Contact (last panel): faint chiaroscuro reference instead of plain black —
+   bookends the entrance painting. The dark gradient keeps text readable;
+   if the image fails to load it just stays dark. */
+.panel.contact .stage {
+  background-image:
+    linear-gradient(rgba(18, 16, 14, 0.82), rgba(18, 16, 14, 0.92)),
+    url("https://commons.wikimedia.org/wiki/Special:FilePath/The%20Calling%20of%20Saint%20Matthew-Caravaggo%20(1599-1600).jpg?width=1600");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.panel .col {
+  flex: 1;
+  display: flex;
+  min-width: 0;
+}
+.panel .center {
+  align-items: center;
+  justify-content: center;
+}
+.panel .text {
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+.panel .stage.column {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 1.25rem;
+}
+
+.panel .img {
+  width: 100%;
+  max-width: 460px;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.06);
+}
+.panel .img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.panel h1 {
+  font-size: clamp(2.2rem, 5.5vw, 4.75rem);
+  overflow-wrap: break-word;
+  max-width: 100%;
+}
+.panel h2 {
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+}
+.panel p {
+  font-size: 1.1rem;
+  line-height: 1.55;
+  max-width: 46ch;
+  opacity: 0.9;
+}
+/* Section label as a highlighted block */
+.panel .meta {
+  display: inline-block;
+  align-self: flex-start;
+  font-family: var(--font-grotesk), system-ui, sans-serif;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #141414;
+  background: #f6f1e8;
+  padding: 0.34rem 0.72rem;
+  border-radius: 5px;
+}
+.panel .stage.column > .meta {
+  align-self: center;
+}
+/* hero name stays plain text (not a section label) */
+.hero-name {
+  font-size: 0.85rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: 0.6;
+}
+
+.panel .tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+.panel .tags span {
+  font-family: var(--font-grotesk), system-ui, sans-serif;
+  font-size: 0.8rem;
+  padding: 0.3rem 0.7rem;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  opacity: 0.75;
+}
+
+.panel .actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+.panel .actions a {
+  font-family: var(--font-grotesk), system-ui, sans-serif;
+  font-size: 0.95rem;
+  font-weight: 500;
+  text-decoration: none;
+  color: inherit;
+  padding: 0.6rem 1.2rem;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  transition: opacity 0.2s;
+}
+.panel .actions a:hover {
+  opacity: 0.6;
+}
+.panel .actions a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+.panel .actions .ico {
+  display: inline-flex;
+  font-size: 1.05rem;
+}
+
+.panel .list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  width: 100%;
+  max-width: 28rem;
+}
+.panel .list li {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-top: 1rem;
+  font-family: var(--font-grotesk), system-ui, sans-serif;
+}
+/* divider line spans the full row so the text sits within it */
+.panel .list li::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.4;
+}
+.panel .xp-left {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  min-width: 0;
+}
+.panel .xp-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 56px;
+  height: 56px;
+  background: #ffffff;
+  border-radius: 11px;
+  overflow: hidden;
+}
+.panel .xp-logo img {
+  max-width: 40px;
+  max-height: 40px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+.panel .xp-logo-fallback {
+  display: none;
+  font-family: var(--font-condensed), "Barlow Condensed", sans-serif;
+  font-weight: 900;
+  color: #14202b;
+  font-size: 1.5rem;
+  line-height: 1;
+}
+.panel .xp-logo-fallback.solo {
+  display: flex;
+}
+.panel .list .role {
+  font-size: 1.15rem;
+  font-weight: 500;
+}
+.panel .list .when {
+  font-size: 0.9rem;
+  opacity: 0.6;
+  white-space: nowrap;
+}
+
+@media (max-width: 900px) {
+  .panel .stage {
+    flex-direction: column;
+    justify-content: center;
+    transform: none;
+  }
+  .panel .img,
+  .panel .img.large {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 720px) {
+  .intro-frame,
+  .intro-nav {
+    min-width: 100%;
+    width: 100%;
+  }
+  .intro-nav {
+    flex-direction: column;
+    align-items: flex-end;
+    padding: 1.5rem;
+    gap: 0.5rem;
+  }
+  .intro-links {
+    width: auto;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.4rem;
+  }
+  .intro-links:nth-child(1),
+  .intro-links:nth-child(2) {
+    padding: 0;
+  }
+  .intro-logo,
+  .intro-logo.pinned {
+    left: 0;
+    transform: translateX(0);
+    text-align: left;
+  }
+  .intro-spacer {
+    height: 100svh;
+  }
+}
+
+/* --- Education panel (logo + class-year rows, stacked) --- */
+.edu-lead {
+  font-family: var(--font-grotesk), system-ui, sans-serif;
+  font-size: 1.05rem;
+  line-height: 1.55;
+  max-width: 46ch;
+  opacity: 0.92;
+}
+.edu-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  width: 100%;
+  margin-top: 0.75rem;
+}
+.edu-row {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+.edu-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 232px;
+  height: 118px;
+  padding: 1rem 1.5rem;
+  background: #ffffff;
+  border-radius: 14px;
+}
+.edu-logo img {
+  max-height: 80px;
+  max-width: 190px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+.edu-fallback {
+  display: none;
+  font-family: var(--font-condensed), "Barlow Condensed", sans-serif;
+  font-weight: 900;
+  text-transform: uppercase;
+  color: #14202b;
+  font-size: 0.82rem;
+  line-height: 1.05;
+  text-align: center;
+  max-width: 11ch;
+}
+.edu-when {
+  font-family: var(--font-grotesk), system-ui, sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  opacity: 0.85;
+}
+
+/* --- Hero: text left, tool marquee right --- */
+.hero-stage h1 {
+  font-size: clamp(2rem, 4.2vw, 3.6rem);
+}
+.hero-interests {
+  font-size: 0.95rem;
+  opacity: 0.7;
+  margin-top: 0.25rem;
+}
+/* keep the hero text grouped, not spread across the column height */
+.hero-stage .text {
+  justify-content: center;
+}
+.hero-stage .col.center {
+  align-self: stretch;
+}
+
+/* Orange Claude mark bouncing around the marquee */
+.hero-right {
+  position: relative;
+  flex-direction: column;
+  gap: 1rem;
+}
+.marquee-label {
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  opacity: 0.6;
+}
+.claude-buddy {
+  position: absolute;
+  top: 8%;
+  left: 4%;
+  z-index: 3;
+  pointer-events: none;
+  filter: drop-shadow(0 4px 8px rgba(44, 42, 38, 0.15));
+  animation: claude-bounce 15s ease-in-out infinite;
+}
+@keyframes claude-bounce {
+  0%   { transform: translate(0, 0) rotate(0deg); }
+  20%  { transform: translate(300px, 8px) rotate(60deg); }
+  40%  { transform: translate(360px, 120px) rotate(-30deg); }
+  60%  { transform: translate(150px, 150px) rotate(80deg); }
+  80%  { transform: translate(-8px, 64px) rotate(-25deg); }
+  100% { transform: translate(0, 0) rotate(0deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .claude-buddy {
+    animation: none;
+  }
+}
+
+/* Marquee wall of tool logos */
+.marquee {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  width: 100%;
+  max-width: 540px;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+}
+.mq-row {
+  display: flex;
+  overflow: hidden;
+}
+.mq-track {
+  display: flex;
+  gap: 0.9rem;
+  width: max-content;
+  flex-shrink: 0;
+  animation: mq-left var(--dur, 40s) linear infinite;
+}
+.mq-row.rev .mq-track {
+  animation-name: mq-right;
+}
+.mq-row:hover .mq-track {
+  animation-play-state: paused;
+}
+.mq-item {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  font-size: 30px;
+  background: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 4px 14px rgba(44, 42, 38, 0.1);
+  filter: grayscale(1);
+  opacity: 0.6;
+  transition: filter 0.25s ease, opacity 0.25s ease, transform 0.25s ease;
+  cursor: default;
+}
+.mq-item:hover {
+  filter: none;
+  opacity: 1;
+  transform: translateY(-3px) scale(1.06);
+}
+@keyframes mq-left {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@keyframes mq-right {
+  from { transform: translateX(-50%); }
+  to { transform: translateX(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mq-track {
+    animation: none;
+  }
+}
+
+/* Orbiting tool "atoms" */
+.atom {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: min(400px, 78vw);
+  aspect-ratio: 1;
+}
+.atom .nucleus {
+  grid-area: 1 / 1;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #2c2a26;
+  box-shadow: 0 0 0 6px rgba(44, 42, 38, 0.06);
+}
+.atom .ring {
+  grid-area: 1 / 1;
+  position: relative;
+  border-radius: 50%;
+  border: 1px solid rgba(44, 42, 38, 0.12);
+  animation: atom-spin var(--dur, 40s) linear infinite;
+}
+.atom .ring.rev {
+  animation-name: atom-spin-rev;
+}
+.atom .spoke {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  display: grid;
+  place-items: center;
+}
+.atom .upright {
+  animation: atom-spin-rev var(--dur, 40s) linear infinite;
+}
+.atom .ring.rev .upright {
+  animation-name: atom-spin;
+}
+.atom .tool {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  font-size: 26px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 14px rgba(44, 42, 38, 0.1);
+  transition: transform 0.2s ease;
+  cursor: default;
+}
+.atom .tool:hover {
+  transform: scale(1.15);
+}
+@keyframes atom-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+@keyframes atom-spin-rev {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(-360deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .atom .ring,
+  .atom .upright {
+    animation: none;
+  }
+}
+
+/* --- About lead (replaces the removed heading) --- */
+.panel .lead {
+  font-family: var(--font-grotesk), system-ui, sans-serif;
+  font-size: clamp(1.2rem, 2.2vw, 1.7rem);
+  font-weight: 500;
+  line-height: 1.4;
+  max-width: 26ch;
+}
+
+/* --- Experience deep-dive link --- */
+.panel .deep-dive {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 11px;
+  border: 1px solid currentColor;
+  color: inherit;
+  text-decoration: none;
+  font-size: 1.15rem;
+  line-height: 1;
+  opacity: 0.75;
+  transition: transform 0.2s ease, opacity 0.2s ease, background 0.2s ease;
+}
+.panel .deep-dive:hover {
+  opacity: 1;
+  transform: translate(2px, -2px);
+  background: rgba(255, 255, 255, 0.14);
+}
+
+/* --- Projects: Mac-style folder grid --- */
+.projects-stage {
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  text-align: left;
+  gap: 1.5rem;
+  padding-top: clamp(2.5rem, 8vh, 5rem);
+  overflow-y: auto;
+}
+.projects-head {
+  text-align: left;
+}
+.folders {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 92px);
+  justify-content: start;
+  gap: 1.2rem 0.9rem;
+  width: 100%;
+  margin-top: 1rem;
+}
+.folder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.55rem;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  padding: 0.4rem;
+  color: inherit;
+  font-family: var(--font-grotesk), system-ui, sans-serif;
+}
+.folder-ico {
+  position: relative;
+  width: 82px;
+  height: 60px;
+  /* macOS Finder folder blue */
+  background: linear-gradient(180deg, #7fbef6 0%, #4d97e6 100%);
+  border-radius: 3px 10px 10px 10px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.22);
+  transition: transform 0.18s ease;
+}
+.folder-ico::before {
+  content: "";
+  position: absolute;
+  top: -8px;
+  left: 0;
+  width: 36px;
+  height: 11px;
+  background: #5aa6ee;
+  border-radius: 6px 6px 0 0;
+}
+.folder-emoji {
+  position: relative;
+  z-index: 1;
+  font-size: 1.6rem;
+  line-height: 1;
+}
+.folder:hover .folder-ico,
+.folder.open .folder-ico {
+  transform: translateY(-4px);
+}
+.folder.open .folder-ico {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+.folder-name {
+  font-size: 0.76rem;
+  font-weight: 500;
+  text-align: center;
+  max-width: 90px;
+  line-height: 1.2;
+}
+.folder-detail {
+  width: 100%;
+  max-width: 100%;
+  margin-top: 1.25rem;
+  background: rgba(0, 0, 0, 0.16);
+  border-radius: 14px;
+  padding: 1.25rem 1.5rem;
+  text-align: left;
+}
+.folder-detail h2 {
+  font-size: clamp(1.4rem, 2.5vw, 2rem);
+  margin-bottom: 0.5rem;
+}
+.folder-detail p {
+  font-size: 1rem;
+  line-height: 1.5;
+  max-width: 60ch;
+  opacity: 0.92;
+}
+.folder-detail .impact {
+  font-weight: 500;
+  margin-top: 0.5rem;
+  opacity: 1;
+}
+.folder-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  margin-top: 1.1rem;
+}
+.folder-actions a,
+.folder-close {
+  font-family: var(--font-grotesk), system-ui, sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 0.5rem 1.1rem;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  background: none;
+  color: inherit;
+  cursor: pointer;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+.folder-actions a:hover,
+.folder-close:hover {
+  opacity: 0.6;
+}
+
+/* --- Experience deep-dive page (/work/[slug]) --- */
+.work-detail {
+  min-height: 100dvh;
+  background: #14110e;
+  color: #f4efe6;
+  padding: clamp(2rem, 6vw, 5rem);
+  font-family: var(--font-grotesk), system-ui, sans-serif;
+}
+.work-detail-inner {
+  max-width: 760px;
+  margin: 0 auto;
+}
+.work-back {
+  color: #f4efe6;
+  opacity: 0.7;
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+.work-back:hover {
+  opacity: 1;
+}
+.work-kicker {
+  margin-top: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.8rem;
+  opacity: 0.6;
+}
+.work-detail h1 {
+  font-family: var(--font-condensed), "Barlow Condensed", sans-serif;
+  text-transform: uppercase;
+  font-weight: 900;
+  line-height: 0.9;
+  font-size: clamp(2.5rem, 7vw, 5rem);
+  margin-top: 0.4rem;
+}
+.work-role {
+  font-size: 1.1rem;
+  opacity: 0.8;
+  margin-top: 0.5rem;
+}
+.work-lead {
+  font-size: 1.15rem;
+  line-height: 1.6;
+  margin-top: 1.5rem;
+  opacity: 0.92;
+}
+.work-detail h2 {
+  font-family: var(--font-condensed), "Barlow Condensed", sans-serif;
+  text-transform: uppercase;
+  font-weight: 900;
+  font-size: 1.5rem;
+  margin-top: 2.5rem;
+}
+.work-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+  margin-top: 1rem;
+}
+.work-cols h2 {
+  margin-top: 2rem;
+  margin-bottom: 0.25rem;
+}
+@media (max-width: 640px) {
+  .work-cols {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+.work-bullets {
+  margin-top: 1rem;
+  padding-left: 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.work-bullets li {
+  font-size: 1.05rem;
+  line-height: 1.5;
+}
+.work-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 2rem;
+}
+.work-tags span {
+  font-size: 0.8rem;
+  padding: 0.3rem 0.7rem;
+  border: 1px solid rgba(244, 239, 230, 0.3);
+  border-radius: 999px;
+}
+.work-detail-foot {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(244, 239, 230, 0.15);
+}
+.work-detail-foot a {
+  color: #f4efe6;
+  text-decoration: none;
+  opacity: 0.8;
+}
+.work-detail-foot a:hover {
+  opacity: 1;
+}
+
+/* ───────────────────────────────────────────────────────────────
+   POLISH PASS (redesign-skill audit): accessibility + tactile feel
+   CSS-only, additive — safe to revert as a block.
+   ─────────────────────────────────────────────────────────────── */
+
+/* Keyboard focus — was missing entirely. Uses currentColor so the
+   ring reads correctly on every panel tone. */
+.cine a:focus-visible,
+.cine button:focus-visible,
+.work-detail a:focus-visible,
+.work-detail button:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Smooth transform so the press below animates (preserves existing
+   opacity hover transitions). */
+.panel .actions a,
+.intro-links a,
+.folder,
+.folder-actions a,
+.folder-close,
+.work-detail-foot a,
+.work-back {
+  transition: opacity 0.2s ease, transform 0.12s ease;
+}
+
+/* Pressed/active feedback — a physical "click" on interactive elements. */
+.panel .actions a:active,
+.panel .deep-dive:active,
+.folder:active,
+.folder-actions a:active,
+.folder-close:active,
+.intro-links a:active,
+.work-detail-foot a:active,
+.work-back:active {
+  transform: scale(0.97);
+}
+
+/* Balance display headlines (kills orphaned last words); tidy body rags. */
+.cine h1,
+.cine h2,
+.work-detail h1,
+.work-detail h2 {
+  text-wrap: balance;
+}
+.panel p,
+.folder-detail p,
+.panel .lead,
+.work-lead,
+.work-bullets li {
+  text-wrap: pretty;
+}
+
+/* Tabular figures so dates/years line up cleanly. */
+.panel .list .when,
+.edu-when,
+.work-role {
+  font-variant-numeric: tabular-nums;
+}
