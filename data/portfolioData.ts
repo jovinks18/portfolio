@@ -96,22 +96,23 @@ export const experience = {
       period: "Jun 2026 – Present · Berkeley, CA",
       // `about` = what the company is + the role (shown first on the detail page)
       about:
-        "Legali AI is a Berkeley SkyDeck legaltech startup building AI-powered legal support for survivors, already serving a user base approaching 7,000. As Product & GTM — and a founder's-office partner — I own early product and go-to-market for its flagship product, Lea, and work directly with the founder on her highest-priority deliverables.",
+        "Legali AI is a Berkeley SkyDeck legaltech startup building AI-powered legal support for survivors. As Product & GTM and a founder's-office partner, I own product, go-to-market, and operations across the company's AI pilots.",
       description:
-        "Owning early product and GTM for Lea by Legali AI — a Berkeley SkyDeck legaltech startup building AI-powered legal support for survivors.",
-      tags: ["Product", "GTM", "Founder's Office", "Onboarding", "AI", "Legaltech"],
+        "Own product, GTM, and ops for Legali AI's AI pilots — driving onboarding and adoption, automating cross-functional handoffs, and giving the founding team a single decision surface.",
+      tags: ["Product", "GTM", "Founder's Office", "Onboarding", "Automation", "AI", "Legaltech"],
       // `details` = what I did (left column on the detail page)
       details: [
-        "Own early product and go-to-market for Lea, the company's AI-powered legal-support product — translating founder vision and user feedback into a roadmap.",
-        "Lead the onboarding workstream, designing the activation and retention flows that bring new users into a sensitive, high-stakes product.",
-        "Work as a founder's-office partner directly with the founder — preparing investor (VC) materials and other high-priority, time-sensitive deliverables.",
-        "Run early customer discovery and feed insights back into product priorities, inside Berkeley SkyDeck.",
+        "Drove two AI pilots from first users to steady adoption — owning onboarding, activation, and the escalation path into product.",
+        "Redesigned two cross-functional workflows and automated recurring handoffs in Make and n8n, routing blockers to a named internal owner instead of stalling.",
+        "Ran a weekly operating review that consolidated pilot adoption, user feedback, and open risks into one decision surface for the founding team.",
+        "Introduced sprint planning, ownership tracking, and automated blocker reporting across 10+ contributors.",
       ],
       // `impact` = the results (right column on the detail page)
       impact: [
-        "Helping support a fast-growing user base of nearly 7,000.",
-        "Standing up the onboarding and activation foundation the team will scale retention on.",
-        "Producing investor-ready materials directly with the founder for fundraising conversations.",
+        "Turned recurring customer issues into a prioritized product backlog and enablement material, giving the team a clear signal on what to build next.",
+        "Cut unresolved follow-up delays 30% by redesigning handoffs so blockers routed to named owners instead of stalling.",
+        "Reclaimed 15 hours/week of status chasing across 10+ contributors by automating recurring handoffs and blocker reporting with AI tooling in Make and n8n.",
+        "Gave the founding team a single weekly decision surface — pilot adoption, feedback, and open risks with explicit owners — to steer where to focus next.",
       ],
     },
     {
@@ -123,22 +124,22 @@ export const experience = {
       logo: "/nav/abinbev-logo.svg",
       period: "Feb 2025 – May 2025 · Prague, Czechia",
       about:
-        "AB InBev is the world's largest brewer. As a Data Analyst on its European logistics and inventory teams in Prague, I owned the reporting that 8 teams across 6 markets relied on — turning fragmented spreadsheets into shared, automated KPI visibility.",
+        "AB InBev is the world's largest brewer. As a Data Analyst on its European logistics and inventory teams in Prague, I owned the reporting that 8 teams across 6 markets relied on.",
       description:
-        "Built dashboards and automated data pipelines for logistics and inventory teams across European markets, turning fragmented reporting into shared KPI visibility.",
+        "Built dashboards and automated data pipelines for logistics and inventory teams across 6 European markets, replacing fragmented reporting with shared KPI visibility.",
       tags: ["Power BI", "SQL", "Python", "Excel", "KPI Dashboards", "Logistics"],
       details: [
-        "Owned the Stock Age Index dashboard end to end — gathering requirements from 8 logistics and inventory teams, modeling the data, building it in Power BI, and driving adoption across European markets.",
-        "Built and maintained the recurring KPI dashboards that 30+ people relied on for weekly decisions, standardizing how the logistics org reads performance.",
-        "Automated the Python data-extraction and validation pipelines feeding those dashboards, replacing fragile manual spreadsheet work.",
-        "Ran structured interviews across 8 teams to surface reporting bottlenecks, then prioritized a build roadmap around the highest-impact gaps.",
-        "Translated stock-age risk and KPI movements into concise, leadership-ready updates for the Zone Director across 6 markets.",
+        "Owned the Stock Age Index dashboard end to end — requirements from 8 teams, data modeling, Power BI build, and adoption across markets.",
+        "Built and maintained the recurring KPI dashboards 30+ people relied on for weekly decisions.",
+        "Automated the Python extraction and validation pipelines feeding those dashboards, replacing manual spreadsheet work.",
+        "Interviewed 8 teams to surface reporting bottlenecks and prioritize the build roadmap.",
+        "Translated stock-age risk into leadership-ready updates for the Zone Director across 6 markets.",
       ],
       impact: [
-        "Saved 20+ hours of manual reporting every month across 8 teams by replacing hand-built reports with the automated Stock Age Index dashboard.",
-        "Cut manual data fixes by 50% through automated extraction and validation, making the numbers people trusted more reliable.",
-        "Lifted on-time delivery 35% by prioritizing the reporting roadmap around real bottlenecks.",
-        "Put shared KPI visibility in front of 30+ users across 6 markets, replacing fragmented, inconsistent reporting.",
+        "Cut 20+ hours of manual reporting per month across 8 teams.",
+        "Reduced manual data fixes 50% via automated extraction and validation.",
+        "Improved on-time delivery 35% by targeting the highest-impact bottlenecks.",
+        "Delivered shared KPI visibility to 30+ users across 6 markets.",
       ],
     },
     {
@@ -150,22 +151,22 @@ export const experience = {
       logo: "/nav/maki-logo.svg",
       period: "Jul 2024 – Jan 2025 · Paris, France",
       about:
-        "Maki People is a pre–Series A HR-tech SaaS that helps companies assess and hire talent. As a Customer Success Intern in Paris, I owned the full post-sale lifecycle for 7 enterprise accounts, partnering directly with HR and Talent leaders as my primary stakeholders.",
+        "Maki People is a pre–Series A HR-tech SaaS that helps companies assess and hire talent. As a Customer Success Intern in Paris, I owned the full post-sale lifecycle for 7 enterprise accounts, partnering directly with HR and Talent leaders.",
       description:
-        "Supported the full post-sale lifecycle for 7 enterprise accounts at a pre–Series A HR-tech SaaS — onboarding, activation, retention, and expansion — partnering directly with HR and Talent leaders through go-live.",
+        "Owned the full post-sale lifecycle — onboarding, activation, retention, expansion — for 7 enterprise accounts at a pre–Series A HR-tech SaaS.",
       tags: ["Customer Success", "Onboarding", "Activation", "Retention", "Voice of Customer", "HR Tech"],
       details: [
-        "Owned onboarding, activation, retention, and expansion for 7 enterprise accounts, partnering with HR and Talent leaders through go-live.",
-        "Mapped the end-to-end activation flow to pinpoint exactly where new customers were dropping off in a critical onboarding handoff.",
-        "Drove a weekly Product & Engineering cadence to unblock customers, coordinate setup, and deliver product training and walkthroughs to 20+ end users.",
-        "Ran weekly Voice-of-Customer reviews and served as the first point of contact for urgent product issues, giving Product a continuous read on friction and risk.",
-        "Built reusable onboarding playbooks, FAQ libraries, and account case studies that became the company standard.",
+        "Owned onboarding, activation, retention, and expansion for 7 enterprise accounts through go-live.",
+        "Mapped the activation flow to pinpoint where new customers dropped off in the onboarding handoff.",
+        "Ran a weekly Product & Engineering cadence to unblock customers and trained 20+ end users.",
+        "Ran weekly Voice-of-Customer reviews as first point of contact for urgent product issues.",
+        "Built onboarding playbooks, FAQ libraries, and account case studies adopted as company standard.",
       ],
       impact: [
-        "Lifted NPS 25% by diagnosing a 30% onboarding drop-off and translating it into prioritized engineering fixes.",
-        "Protected 95% on-time go-live across accounts, accelerating time-to-first-value.",
-        "Equipped 20+ end users through hands-on training and walkthroughs, smoothing activation.",
-        "Removed repeat coordination company-wide with playbooks adopted as standard, and armed leadership for renewal and expansion conversations.",
+        "Raised NPS 25% by diagnosing a 30% onboarding drop-off and driving prioritized fixes.",
+        "Held 95% on-time go-live across accounts.",
+        "Trained 20+ end users to accelerate activation.",
+        "Cut repeat coordination company-wide with playbooks adopted as standard.",
       ],
     },
     {
@@ -175,20 +176,20 @@ export const experience = {
       tone: "blush" as Tone,
       slug: "zolostays",
       logo: "", // no logo file yet — shows a monogram. Drop one in /public/nav and set the path.
-      period: "2023 · Bengaluru, India", // EDIT dates
+      period: "Oct 2021 – Mar 2022 · Bengaluru, India",
       about:
-        "Zolostays is one of India's largest managed co-living marketplaces. As a Product Intern in Bengaluru, I worked on product discovery across the discovery-to-booking journey, digging into where users dropped off and what residents actually needed.",
+        "Zolostays is one of India's largest managed co-living marketplaces. As a Product Intern in Bengaluru, I worked on product discovery across the discovery-to-booking journey.",
       description:
-        "Mapped the discovery-to-booking journey across users, properties, and cities at a managed-housing marketplace, focusing on conversion friction and resident feedback.",
+        "Mapped the discovery-to-booking journey across users, properties, and cities at a managed co-living marketplace, focusing on conversion friction and resident feedback.",
       tags: ["Product Discovery", "Marketplace Ops", "User Research", "Journey Mapping"],
       details: [
-        "Mapped the end-to-end discovery-to-booking journey across users, properties, and cities for a managed co-living marketplace.",
-        "Analyzed the booking user flow step by step to find where prospective residents dropped off.",
-        "Synthesized resident feedback and funnel data into product-discovery insights the team could act on.",
+        "Mapped the discovery-to-booking journey across users, properties, and cities.",
+        "Investigated conversion friction at each step of the funnel, from search to booking.",
+        "Synthesized resident feedback into actionable product-discovery insights.",
       ],
       impact: [
-        "Pinpointed the highest-friction steps in the discovery-to-booking flow and turned them into a prioritized set of user-flow improvements for the product team.",
-        "Recommended changes aimed at smoothing the journey from search to booking and reducing drop-off along the funnel.",
+        "Audited the full discovery-to-booking funnel and flagged the top 3 conversion blockers, giving the product team a prioritized fix list.",
+        "Synthesized 20+ pieces of resident feedback into a ranked discovery backlog the team could act on.",
       ],
     },
   ],
