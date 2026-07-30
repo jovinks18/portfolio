@@ -8,7 +8,7 @@ export default function Experience() {
   return (
     <section id="experience">
       <SectionHeader kicker={experience.kicker} title={experience.title} />
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
         {experience.items.map((item, i) => (
           <ExperienceCard key={item.company} {...item} delay={i * 0.08} />
         ))}

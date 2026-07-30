@@ -17,6 +17,39 @@
   ::selection {
     @apply bg-butter-soft text-ink;
   }
+  a,
+  button {
+    touch-action: manipulation;
+  }
+  a:focus-visible,
+  button:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+}
+
+.skip-link {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 9999;
+  transform: translateY(-200%);
+  border-radius: 0.5rem;
+  background: #141414;
+  color: #ffffff;
+  padding: 0.65rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform 0.15s ease;
+}
+.skip-link:focus-visible {
+  transform: translateY(0);
+}
+
+.with-sticky-nav section[id] {
+  scroll-margin-top: 5rem;
 }
 
 /* Intro loader: letters blur in sequence */
@@ -298,6 +331,11 @@
   overflow-wrap: break-word;
   max-width: 100%;
 }
+.panel h2.section-title {
+  font-size: clamp(2.2rem, 5.5vw, 4.75rem);
+  overflow-wrap: break-word;
+  max-width: 100%;
+}
 .panel h2 {
   font-size: clamp(1.5rem, 3vw, 2.5rem);
 }
@@ -381,17 +419,12 @@
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 1.1rem;
+  gap: 0.65rem;
   width: 100%;
-  max-width: 28rem;
+  max-width: 32rem;
 }
 .panel .list li {
   position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  padding-top: 1rem;
   font-family: var(--font-grotesk), system-ui, sans-serif;
 }
 /* divider line spans the full row so the text sits within it */
@@ -404,6 +437,16 @@
   height: 1px;
   background: currentColor;
   opacity: 0.4;
+}
+.panel .xp-entry {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-top: 0.85rem;
+  border-radius: 8px;
+  color: inherit;
+  text-decoration: none;
 }
 .panel .xp-left {
   display: flex;
@@ -441,8 +484,24 @@
 .panel .xp-logo-fallback.solo {
   display: flex;
 }
+.panel .xp-copy {
+  display: flex;
+  justify-content: center;
+  min-width: 0;
+  flex-direction: column;
+}
 .panel .list .role {
-  font-size: 1.15rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.1rem 0.35rem;
+  font-size: 1.02rem;
+  font-weight: 500;
+  line-height: 1.25;
+}
+.panel .xp-company {
+  font-weight: 700;
+}
+.panel .xp-role {
   font-weight: 500;
 }
 .panel .list .when {
@@ -461,6 +520,45 @@
   .panel .img.large {
     width: 100%;
     max-width: 100%;
+  }
+  #work .stage {
+    justify-content: flex-start;
+    gap: 1rem;
+    overflow-y: auto;
+  }
+  #work .col.text,
+  #work .list {
+    width: 100%;
+    max-width: none;
+  }
+  #work .col.text {
+    gap: 0.75rem;
+  }
+  #work .col.center {
+    flex: 0 0 auto;
+  }
+  #work .img {
+    width: min(220px, 60vw);
+    max-width: 220px;
+    height: min(220px, 24dvh);
+    aspect-ratio: auto;
+  }
+}
+
+@media (max-width: 640px) {
+  #work .col.center {
+    display: none;
+  }
+  #work .xp-logo {
+    width: 46px;
+    height: 46px;
+  }
+  #work .xp-logo img {
+    max-width: 34px;
+    max-height: 34px;
+  }
+  #work .list .role {
+    font-size: 0.94rem;
   }
 }
 
@@ -772,6 +870,12 @@
   transform: translate(2px, -2px);
   background: rgba(255, 255, 255, 0.14);
 }
+.panel .xp-entry:hover .deep-dive,
+.panel .xp-entry:focus-visible .deep-dive {
+  opacity: 1;
+  transform: translate(2px, -2px);
+  background: rgba(255, 255, 255, 0.14);
+}
 
 /* --- Projects: Mac-style folder grid --- */
 .projects-stage {
@@ -856,9 +960,14 @@
   padding: 1.25rem 1.5rem;
   text-align: left;
 }
-.folder-detail h2 {
+.folder-detail h3 {
+  font-family: var(--font-condensed), "Barlow Condensed", sans-serif;
+  font-weight: 900;
+  line-height: 0.95;
+  text-transform: uppercase;
   font-size: clamp(1.4rem, 2.5vw, 2rem);
   margin-bottom: 0.5rem;
+  text-wrap: balance;
 }
 .folder-detail p {
   font-size: 1rem;
@@ -1065,4 +1174,44 @@
 .edu-when,
 .work-role {
   font-variant-numeric: tabular-nums;
+}
+
+/* Motion-sensitive visitors get the same content with native scrolling. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .intro-backdrop,
+  .intro-img,
+  .intro-frame,
+  .intro-nav,
+  .intro-scroll-hint {
+    position: absolute;
+  }
+
+  .intro-spacer {
+    height: 100svh;
+  }
+
+  .panel {
+    min-height: 100dvh;
+    overflow: visible;
+  }
+
+  .panel .stage {
+    position: relative;
+    min-height: 100dvh;
+    transform: none;
+    will-change: auto;
+  }
 }

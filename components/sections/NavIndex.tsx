@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, type MouseEvent } from "react";
 import { motion } from "framer-motion";
 import { FaInstagram, FaLinkedin, FaGithub } from "react-icons/fa";
 import type { IconType } from "react-icons";
@@ -175,8 +175,30 @@ function FloatContentView({ content }: { content: FloatContent }) {
 export default function NavIndex() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
-  const scrollTo = (href: string) => {
-    document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
+  const scrollToSection = (
+    event: MouseEvent<HTMLAnchorElement>,
+    href: string
+  ) => {
+    if (
+      event.button !== 0 ||
+      event.metaKey ||
+      event.ctrlKey ||
+      event.shiftKey ||
+      event.altKey
+    ) {
+      return;
+    }
+
+    const target = document.querySelector(href);
+    if (!target) return;
+
+    event.preventDefault();
+    window.history.pushState(null, "", href);
+    target.scrollIntoView({
+      behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
+        ? "auto"
+        : "smooth",
+    });
   };
 
   return (
@@ -225,10 +247,13 @@ export default function NavIndex() {
           {navItems.map((item, i) => {
             const active = hoveredIndex === i;
             return (
-              <motion.button
+              <motion.a
                 key={item.label}
-                onClick={() => scrollTo(item.href)}
+                href={item.href}
+                onClick={(event) => scrollToSection(event, item.href)}
                 onMouseEnter={() => setHoveredIndex(i)}
+                onFocus={() => setHoveredIndex(i)}
+                onBlur={() => setHoveredIndex(null)}
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.15 + i * 0.07, ease: [0.21, 0.47, 0.32, 0.98] }}
@@ -278,20 +303,21 @@ export default function NavIndex() {
                     →
                   </motion.span>
                 </div>
-              </motion.button>
+              </motion.a>
             );
           })}
           <div className="border-t border-white/[0.08]" />
         </nav>
       </div>
 
-      {/* Full view button */}
-      <button
-        onClick={() => scrollTo("#hero")}
+      {/* Full view link */}
+      <a
+        href="#hero"
+        onClick={(event) => scrollToSection(event, "#hero")}
         className="absolute bottom-8 right-8 z-10 rounded-full border border-white/15 px-4 py-2 text-xs font-medium text-white/40 transition-all hover:border-white/30 hover:text-white/70 sm:right-12"
       >
         full view ↓
-      </button>
+      </a>
 
     </section>
   );

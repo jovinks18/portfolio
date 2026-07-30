@@ -13,6 +13,11 @@ const contactIcon: Record<string, ReactNode> = {
   Resume: <FaRegFileLines aria-hidden />,
 };
 
+const compactExperienceRoles: Record<string, string> = {
+  "legali-ai": "Chief of Staff",
+  "ab-inbev": "Product Owner",
+};
+
 /**
  * Quiet "someone opened my resume" ping. Anonymous — just a heads-up with a
  * timestamp, where they came from, and their device.
@@ -104,12 +109,21 @@ const logoError = (e: SyntheticEvent<HTMLImageElement>) => {
  * portrait-3.jpg  (see README). Missing images fall back to solid colors.
  */
 export default function CityPortfolio() {
-  const root = useRef<HTMLDivElement>(null);
+  const root = useRef<HTMLElement>(null);
   const [openFolder, setOpenFolder] = useState<number | null>(null);
 
   useEffect(() => {
+    const scope = root.current;
+    if (!scope) return;
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      scope.dataset.motion = "reduced";
+      return () => {
+        delete scope.dataset.motion;
+      };
+    }
+
     let ctx: { revert: () => void } | undefined;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     let lenis: any;
     let tickerFn: ((t: number) => void) | undefined;
     let detachRefresh = () => {};
@@ -127,7 +141,7 @@ export default function CityPortfolio() {
 
       try {
       // Smooth scrolling
-      lenis = new Lenis();
+      lenis = new Lenis({ anchors: true });
       lenis.on("scroll", ScrollTrigger.update);
       tickerFn = (time: number) => lenis.raf(time * 1000);
       gsap.ticker.add(tickerFn);
@@ -273,7 +287,7 @@ export default function CityPortfolio() {
   }, []);
 
   return (
-    <div ref={root} className="cine">
+    <main id="main-content" ref={root} className="cine">
       {/* ── Effect A: entry frame ───────────────────────────────── */}
       <div className="intro-backdrop intro-layer">
         <div className="intro-img">
@@ -291,7 +305,7 @@ export default function CityPortfolio() {
           <a href="#contact">Connect</a>
         </div>
         <div className="intro-logo">
-          <a href="#">{profile.name.split(" ")[0]}</a>
+          <a href="#top">{profile.name.split(" ")[0]}</a>
           <div className="intro-langs" aria-hidden>
             <span>조빈</span>
             <span>जोविन</span>
@@ -304,12 +318,12 @@ export default function CityPortfolio() {
       {/* ── Effect B: stacked content panels ────────────────────── */}
       <div className="panels">
         {/* Panel 1 — statement */}
-        <section className="panel ink" id="top">
+        <section className="panel ink" id="top" aria-labelledby="about-heading">
           <div className="bg" />
           <div className="stage hero-stage">
             <div className="col text">
               <p className="meta">About me</p>
-              <h1>{profile.headline}</h1>
+              <h1 id="about-heading">{profile.headline}</h1>
               <p>
                 {"I'm a recent Berkeley Haas graduate based in Berkeley, California, looking to break into solving customer issues and working closely with product and ops."}
               </p>
@@ -342,7 +356,7 @@ export default function CityPortfolio() {
         </section>
 
         {/* Panel 2 — Education (image left, content right) */}
-        <section className="panel sage" id="education">
+        <section className="panel sage" id="education" aria-labelledby="education-heading">
           <div className="bg" />
           <div className="stage">
             <div className="col center">
@@ -351,7 +365,7 @@ export default function CityPortfolio() {
               </div>
             </div>
             <div className="col text">
-              <p className="meta">education</p>
+              <h2 id="education-heading" className="meta">education</h2>
               <p className="edu-lead">
                 {"I spent the last three years on a triple-degree Master in Management — Global Economic Transformation & Technology — that took me across three schools and three continents: EDHEC in Paris, SKK GSB in Seoul, and UC Berkeley Haas. I dug into how technology reshapes business — product, customer experience, data, and AI — and finished on the Dean's List."}
               </p>
@@ -371,40 +385,48 @@ export default function CityPortfolio() {
         </section>
 
         {/* Panel 3 — Experience */}
-        <section className="panel violet" id="work">
+        <section className="panel violet" id="work" aria-labelledby="work-heading">
           <div className="bg" />
           <div className="stage">
             <div className="col text">
               <p className="meta">{experience.kicker}</p>
-              <h1>{experience.title}</h1>
+              <h2 id="work-heading" className="section-title">{experience.title}</h2>
               <ul className="list">
                 {experience.items.map((item) => (
                   <li key={item.company}>
-                    <span className="xp-left">
-                      <span className="xp-logo">
-                        {item.logo ? (
-                          <>
-                            <img src={item.logo} alt="" onError={logoError} />
-                            <span className="xp-logo-fallback">
+                    <Link
+                      className="xp-entry"
+                      href={`/work/${item.slug}`}
+                      aria-label={`View ${item.company} — ${item.role} experience details`}
+                    >
+                      <span className="xp-left">
+                        <span className="xp-logo">
+                          {item.logo ? (
+                            <>
+                              <img src={item.logo} alt="" onError={logoError} />
+                              <span className="xp-logo-fallback">
+                                {item.company.charAt(0)}
+                              </span>
+                            </>
+                          ) : (
+                            <span className="xp-logo-fallback solo">
                               {item.company.charAt(0)}
                             </span>
-                          </>
-                        ) : (
-                          <span className="xp-logo-fallback solo">
-                            {item.company.charAt(0)}
+                          )}
+                        </span>
+                        <span className="xp-copy">
+                          <span className="role">
+                            <span className="xp-company">{item.company}</span>
+                            <span aria-hidden>—</span>
+                            <span className="xp-role">
+                              {compactExperienceRoles[item.slug] ?? item.role}
+                            </span>
                           </span>
-                        )}
+                        </span>
                       </span>
-                      <span className="role">
-                        {item.company} — {item.role}
+                      <span className="deep-dive" aria-hidden>
+                        ↗
                       </span>
-                    </span>
-                    <Link
-                      className="deep-dive"
-                      href={`/work/${item.slug}`}
-                      aria-label={`Open ${item.company} details`}
-                    >
-                      <span aria-hidden>↗</span>
                     </Link>
                   </li>
                 ))}
@@ -419,7 +441,7 @@ export default function CityPortfolio() {
         </section>
 
         {/* Panel 4 — Projects (image left, content right) */}
-        <section className="panel amber" id="built">
+        <section className="panel amber" id="built" aria-labelledby="projects-heading">
           <div className="bg" />
           <div className="stage">
             <div className="col center">
@@ -429,13 +451,16 @@ export default function CityPortfolio() {
             </div>
             <div className="col text">
               <p className="meta">{projects.kicker}</p>
-              <h1>{projects.title}</h1>
+              <h2 id="projects-heading" className="section-title">{projects.title}</h2>
               <div className="folders">
                 {projects.items.map((p, i) => (
                   <button
                     key={p.name}
                     type="button"
+                    id={`project-folder-${i}`}
                     className={`folder${openFolder === i ? " open" : ""}`}
+                    aria-expanded={openFolder === i}
+                    aria-controls={`project-detail-${i}`}
                     onClick={() => setOpenFolder(openFolder === i ? null : i)}
                   >
                     <span className="folder-ico" aria-hidden />
@@ -444,8 +469,13 @@ export default function CityPortfolio() {
                 ))}
               </div>
               {openFolder !== null && (
-                <div className="folder-detail">
-                  <h2>{projects.items[openFolder].name}</h2>
+                <div
+                  id={`project-detail-${openFolder}`}
+                  className="folder-detail"
+                  role="region"
+                  aria-labelledby={`project-folder-${openFolder}`}
+                >
+                  <h3>{projects.items[openFolder].name}</h3>
                   <p>{projects.items[openFolder].description}</p>
                   {projects.items[openFolder].impact && (
                     <p className="impact">→ {projects.items[openFolder].impact}</p>
@@ -479,11 +509,11 @@ export default function CityPortfolio() {
         </section>
 
         {/* Panel 5 — Contact (last, not pinned) */}
-        <section className="panel ink contact" id="contact">
+        <section className="panel ink contact" id="contact" aria-labelledby="contact-heading">
           <div className="bg" />
           <div className="stage column">
             <p className="meta">{contact.kicker}</p>
-            <h1>{contact.title}</h1>
+            <h2 id="contact-heading" className="section-title">{contact.title}</h2>
             <p>{contact.message}</p>
             <div className="actions">
               {contact.links.map((l) => {
@@ -505,6 +535,6 @@ export default function CityPortfolio() {
           </div>
         </section>
       </div>
-    </div>
+    </main>
   );
 }

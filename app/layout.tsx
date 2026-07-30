@@ -43,7 +43,12 @@ export default function RootLayout({
       lang="en"
       className={`${display.variable} ${body.variable} ${condensed.variable} ${grotesk.variable}`}
     >
-      <body>{children}</body>
+      <body>
+        <a className="skip-link" href="#main-content">
+          Skip to main content
+        </a>
+        {children}
+      </body>
     </html>
   );
 }

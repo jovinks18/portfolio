@@ -5,6 +5,7 @@ import Experience from "@/components/sections/Experience";
 import Projects from "@/components/sections/Projects";
 import Education from "@/components/sections/Education";
 import Contact from "@/components/sections/Contact";
+import ReducedMotionProvider from "@/components/ReducedMotionProvider";
 
 /**
  * The clean, recruiter-focused single page.
@@ -12,9 +13,12 @@ import Contact from "@/components/sections/Contact";
  */
 export default function MinimalPage() {
   return (
-    <>
+    <ReducedMotionProvider>
       <TopNav />
-      <main className="mx-auto max-w-6xl space-y-20 px-4 py-10 sm:px-6 sm:py-14 lg:py-20">
+      <main
+        id="main-content"
+        className="with-sticky-nav mx-auto max-w-6xl space-y-20 px-4 py-10 sm:px-6 sm:py-14 lg:py-20"
+      >
         <Hero />
         <About />
         <Experience />
@@ -22,6 +26,6 @@ export default function MinimalPage() {
         <Education />
         <Contact />
       </main>
-    </>
+    </ReducedMotionProvider>
   );
 }

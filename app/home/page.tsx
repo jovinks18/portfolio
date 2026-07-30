@@ -8,22 +8,26 @@ import Notes from "@/components/sections/Notes";
 import Personal from "@/components/sections/Personal";
 import Education from "@/components/sections/Education";
 import Contact from "@/components/sections/Contact";
+import ReducedMotionProvider from "@/components/ReducedMotionProvider";
 
 export default function Home() {
   return (
-    <>
+    <ReducedMotionProvider>
       <NavIndex />
-      <main className="mx-auto max-w-6xl space-y-20 px-4 py-10 sm:px-6 sm:py-14 lg:py-20">
-      <Hero />
-      <About />
-      <Experience />
-      <Projects />
-      <Tools />
-      <Notes />
-      <Personal />
-      <Education />
-      <Contact />
-    </main>
-    </>
+      <main
+        id="main-content"
+        className="mx-auto max-w-6xl space-y-20 px-4 py-10 sm:px-6 sm:py-14 lg:py-20"
+      >
+        <Hero />
+        <About />
+        <Experience />
+        <Projects />
+        <Tools />
+        <Notes />
+        <Personal />
+        <Education />
+        <Contact />
+      </main>
+    </ReducedMotionProvider>
   );
 }

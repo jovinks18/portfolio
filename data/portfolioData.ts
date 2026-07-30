@@ -37,7 +37,7 @@ export const profile = {
   links: {
     resume: "/resume.pdf", // drop your resume in /public
     linkedin: "https://www.linkedin.com/in/jovinks",
-    github: "https://github.com/jovinks",
+    github: "https://github.com/jovinks18",
     email: "mailto:jovin.sivakumar@berkeley.edu",
   },
   currentlyExploring: [
@@ -88,58 +88,65 @@ export const experience = {
   items: [
     {
       company: "Legali AI",
-      role: "Product & GTM",
+      role: "Chief of Staff — Product & Operations",
       emoji: "⚖️",
       tone: "clay" as Tone,
       slug: "legali-ai",
       logo: "", // no logo file yet — shows a monogram. Drop one in /public/nav and set the path.
-      period: "Jun 2026 – Present · Berkeley, CA",
-      // `about` = what the company is + the role (shown first on the detail page)
+      dates: "May 2026–Present",
+      period: "May 2026–Present · San Francisco, CA",
+      summary: "7,000+ users · 2 AI pilots · 30% fewer follow-up delays",
       about:
-        "Legali AI is a Berkeley SkyDeck legaltech startup building AI-powered legal support for survivors. As Product & GTM and a founder's-office partner, I own product, go-to-market, and operations across the company's AI pilots.",
-      description:
-        "Own product, GTM, and ops for Legali AI's AI pilots — driving onboarding and adoption, automating cross-functional handoffs, and giving the founding team a single decision surface.",
-      tags: ["Product", "GTM", "Founder's Office", "Onboarding", "Automation", "AI", "Legaltech"],
-      // `details` = what I did (left column on the detail page)
-      details: [
-        "Drove two AI pilots from first users to steady adoption — owning onboarding, activation, and the escalation path into product.",
-        "Redesigned two cross-functional workflows and automated recurring handoffs in Make and n8n, routing blockers to a named internal owner instead of stalling.",
-        "Ran a weekly operating review that consolidated pilot adoption, user feedback, and open risks into one decision surface for the founding team.",
-        "Introduced sprint planning, ownership tracking, and automated blocker reporting across 10+ contributors.",
+        "Legali AI is a Berkeley SkyDeck legaltech startup building AI-powered legal support for survivors. As Chief of Staff, I work across product, operations, and customer rollout—turning founder priorities and user feedback into shipped improvements, clearer ownership, and repeatable operating systems.",
+      tags: [
+        "Chief of Staff",
+        "Product",
+        "Operations",
+        "Customer Rollout",
+        "Automation",
+        "AI",
+        "Legaltech",
       ],
-      // `impact` = the results (right column on the detail page)
+      details: [
+        "Ran the company's weekly operating cadence across Product, Engineering, Support, and customer-facing work, coordinating priorities, dependencies, risks, and blockers across 10+ contributors.",
+        "Led rollout, onboarding, and ongoing support for two AI pilots across three accounts, reaching 20+ weekly active users.",
+        "Built the Voice-of-Customer process that converted recurring user issues into prioritized product requirements and shipped improvements.",
+        "Redesigned four recurring workflows and automated triage, ownership, escalation, and handoffs using Make and n8n.",
+        "Translated founder priorities into clear owners, deadlines, decision points, and cross-functional execution plans.",
+      ],
       impact: [
-        "Turned recurring customer issues into a prioritized product backlog and enablement material, giving the team a clear signal on what to build next.",
-        "Cut unresolved follow-up delays 30% by redesigning handoffs so blockers routed to named owners instead of stalling.",
-        "Reclaimed 15 hours/week of status chasing across 10+ contributors by automating recurring handoffs and blocker reporting with AI tooling in Make and n8n.",
-        "Gave the founding team a single weekly decision surface — pilot adoption, feedback, and open risks with explicit owners — to steer where to focus next.",
+        "Helped scale the AI product to 7,000+ users through rollout, feedback loops, and continuous product iteration.",
+        "Reduced unresolved customer follow-up delays by 30% through clearer ownership and automated escalation.",
+        "Shipped three product improvements from customer signal through requirements and release.",
+        "Reduced learning-module completion time from 15–20 minutes to 5–7 minutes while preserving the core content.",
+        "Reduced founder involvement in recurring coordination by owning weekly planning, status reporting, and blocker follow-up.",
       ],
     },
     {
       company: "AB InBev Europe",
-      role: "Data Analyst",
+      role: "Data Analyst · BI Product Owner",
       emoji: "📊",
       tone: "dusk" as Tone,
       slug: "ab-inbev",
       logo: "/nav/abinbev-logo.svg",
-      period: "Feb 2025 – May 2025 · Prague, Czechia",
+      dates: "Feb 2025–May 2025",
+      period: "Feb 2025–May 2025 · Prague, Czechia",
+      summary: "30+ users · 6 markets · 20+ reporting hours saved/month",
       about:
-        "AB InBev is the world's largest brewer. As a Data Analyst on its European logistics and inventory teams in Prague, I owned the reporting that 8 teams across 6 markets relied on.",
-      description:
-        "Built dashboards and automated data pipelines for logistics and inventory teams across 6 European markets, replacing fragmented reporting with shared KPI visibility.",
+        "On AB InBev Europe's logistics team, I owned BI products used by operators across six markets—from stakeholder discovery and data validation through rollout and adoption.",
       tags: ["Power BI", "SQL", "Python", "Excel", "KPI Dashboards", "Logistics"],
       details: [
-        "Owned the Stock Age Index dashboard end to end — requirements from 8 teams, data modeling, Power BI build, and adoption across markets.",
-        "Built and maintained the recurring KPI dashboards 30+ people relied on for weekly decisions.",
-        "Automated the Python extraction and validation pipelines feeding those dashboards, replacing manual spreadsheet work.",
-        "Interviewed 8 teams to surface reporting bottlenecks and prioritize the build roadmap.",
-        "Translated stock-age risk into leadership-ready updates for the Zone Director across 6 markets.",
+        "Owned the Stock Age Index BI product end to end: requirements, data modeling, dashboard development, validation, rollout, and adoption.",
+        "Interviewed stakeholders across eight teams to identify reporting bottlenecks and prioritize the product roadmap.",
+        "Built recurring Power BI and SQL reporting used by 30+ logistics operators for weekly decisions.",
+        "Automated Python extraction, reconciliation, and validation workflows that replaced manual spreadsheet work.",
+        "Surfaced expiry risk across 300+ SKUs and translated findings into leadership-ready updates.",
       ],
       impact: [
-        "Cut 20+ hours of manual reporting per month across 8 teams.",
-        "Reduced manual data fixes 50% via automated extraction and validation.",
-        "Improved on-time delivery 35% by targeting the highest-impact bottlenecks.",
-        "Delivered shared KPI visibility to 30+ users across 6 markets.",
+        "Saved more than 20 hours of manual reporting per month.",
+        "Reduced manual data corrections by 50%.",
+        "Delivered shared KPI visibility to 30+ users across six European markets.",
+        "Enabled country teams and the Zone Director to identify stock-age risk earlier.",
       ],
     },
     {
@@ -149,24 +156,25 @@ export const experience = {
       tone: "sage" as Tone,
       slug: "maki-people",
       logo: "/nav/maki-logo.svg",
-      period: "Jul 2024 – Jan 2025 · Paris, France",
+      dates: "Jul 2024–Jan 2025",
+      period: "Jul 2024–Jan 2025 · Paris, France",
+      summary: "7 enterprise accounts · 95% on-time go-live · 6 product improvements",
       about:
-        "Maki People is a pre–Series A HR-tech SaaS that helps companies assess and hire talent. As a Customer Success Intern in Paris, I owned the full post-sale lifecycle for 7 enterprise accounts, partnering directly with HR and Talent leaders.",
-      description:
-        "Owned the full post-sale lifecycle — onboarding, activation, retention, expansion — for 7 enterprise accounts at a pre–Series A HR-tech SaaS.",
+        "Maki People is a Series A HR-tech SaaS company. I managed onboarding and adoption across seven enterprise accounts while connecting customer friction with Product and Engineering priorities.",
       tags: ["Customer Success", "Onboarding", "Activation", "Retention", "Voice of Customer", "HR Tech"],
       details: [
-        "Owned onboarding, activation, retention, and expansion for 7 enterprise accounts through go-live.",
-        "Mapped the activation flow to pinpoint where new customers dropped off in the onboarding handoff.",
-        "Ran a weekly Product & Engineering cadence to unblock customers and trained 20+ end users.",
-        "Ran weekly Voice-of-Customer reviews as first point of contact for urgent product issues.",
-        "Built onboarding playbooks, FAQ libraries, and account case studies adopted as company standard.",
+        "Managed onboarding and activation across seven enterprise accounts through go-live.",
+        "Built implementation plans, tracked milestones and risks, and maintained a 95% on-time onboarding rate.",
+        "Trained 20+ users and created walkthroughs, FAQs, onboarding playbooks, and reusable enablement materials.",
+        "Ran Voice-of-Customer reviews and connected support conversations and usage data to product requirements.",
+        "Supported renewals and multi-country expansion through adoption reporting, QBR preparation, and customer follow-up.",
       ],
       impact: [
-        "Raised NPS 25% by diagnosing a 30% onboarding drop-off and driving prioritized fixes.",
-        "Held 95% on-time go-live across accounts.",
-        "Trained 20+ end users to accelerate activation.",
-        "Cut repeat coordination company-wide with playbooks adopted as standard.",
+        "Maintained 95% on-time go-live across seven enterprise accounts.",
+        "Reduced repeat support requests by 40%.",
+        "Improved NPS by two points after identifying a 30% onboarding drop-off and driving fixes.",
+        "Influenced six product improvements using customer conversations and usage analysis.",
+        "Reduced customer handoff gaps by 40% through clearer ownership and standardized playbooks.",
       ],
     },
     {
@@ -176,11 +184,11 @@ export const experience = {
       tone: "blush" as Tone,
       slug: "zolostays",
       logo: "", // no logo file yet — shows a monogram. Drop one in /public/nav and set the path.
-      period: "Oct 2021 – Mar 2022 · Bengaluru, India",
+      dates: "Oct 2021–Mar 2022",
+      period: "Oct 2021–Mar 2022 · Bengaluru, India",
+      summary: "20+ customer signals · 3 prioritized conversion blockers",
       about:
         "Zolostays is one of India's largest managed co-living marketplaces. As a Product Intern in Bengaluru, I worked on product discovery across the discovery-to-booking journey.",
-      description:
-        "Mapped the discovery-to-booking journey across users, properties, and cities at a managed co-living marketplace, focusing on conversion friction and resident feedback.",
       tags: ["Product Discovery", "Marketplace Ops", "User Research", "Journey Mapping"],
       details: [
         "Mapped the discovery-to-booking journey across users, properties, and cities.",
@@ -202,9 +210,8 @@ export const experience = {
 export const projects = {
   title: "Things I've built",
   kicker: "projects",
-  // NOTE: github URLs are best-guess slugs under your username — verify each
-  // links to the right repo (search "EDIT" / fix the username if it's not
-  // "jovinsivakumar"). Add `live:` if a project has a deployed demo.
+  // GitHub URLs point to the matching public repositories on jovinks18.
+  // Add `live:` if a project has a deployed demo.
   items: [
     {
       name: "Linea",
@@ -214,7 +221,7 @@ export const projects = {
         "An open-source AI post-sales command center that turns customer conversations into support cases, onboarding tasks, product signals, and account-health updates.",
       impact: "Safe-by-design: models only propose validated, structured plans; deterministic code executes via a transaction-safe action log.",
       tools: ["Next.js", "TypeScript", "PostgreSQL", "Ollama", "n8n"],
-      github: "https://github.com/jovinks/linea", // EDIT
+      github: "https://github.com/jovinks18/linea",
       live: "",
     },
     {
@@ -225,7 +232,7 @@ export const projects = {
         "A Customer Success operating framework on synthetic B2B SaaS churn data — exec summary, health framework, a real QBR deck, and a CS operating-model recommendation.",
       impact: "Found 85% of churned ARR was product/pricing-driven and a 79% reactivation rate was the most underused signal.",
       tools: ["Python", "pandas", "Jupyter"],
-      github: "https://github.com/jovinks/ravenstack-cs", // EDIT
+      github: "https://github.com/jovinks18/ravenstack-cs-analysis",
       live: "",
     },
     {
@@ -236,7 +243,7 @@ export const projects = {
         "An offline, fully-local autonomous agent engine that turns plain-English goals into native OS commands and Python, run in a sandboxed subprocess with a guardrail timeout.",
       impact: "Planner/executor multi-agent split with type-safe execution plans and runtime safety boundaries — no cloud, no token cost.",
       tools: ["FastAPI", "Streamlit", "Ollama", "Qwen 2.5", "Llama 3.2"],
-      github: "https://github.com/jovinks/localops-agent-swarm", // EDIT
+      github: "https://github.com/jovinks18/localops-agent-swarm",
       live: "",
     },
     {
@@ -247,7 +254,7 @@ export const projects = {
         "A voice-forward conversational AI for restaurant discovery and table booking in SF, with a full Whisper-in / OpenAI-TTS-out voice loop and a live agent-trace panel.",
       impact: "Two-pass function-calling pipeline with anti-hallucination guardrails, framed around conversion and time-to-book.",
       tools: ["GPT-4o", "FastAPI", "Streamlit", "Whisper"],
-      github: "https://github.com/jovinks/vocal-pantry", // EDIT
+      github: "https://github.com/jovinks18/vocal-pantry",
       live: "",
     },
     {
@@ -258,7 +265,7 @@ export const projects = {
         "An automated industrial visual QA system using GPT-4o Vision to detect product defects, score confidence, categorize risk, and output structured JSON reports for ERP use.",
       impact: "Replaces fatigue-prone manual inspection with objective analysis and confidence thresholds that decide when a human is needed.",
       tools: ["GPT-4o Vision", "Python", "Streamlit"],
-      github: "https://github.com/jovinks/visionaudit-ai", // EDIT
+      github: "https://github.com/jovinks18/VisionAudit-AI",
       live: "",
     },
     {
@@ -269,7 +276,7 @@ export const projects = {
         "A campus social app with 'free to hang out' status, live presence, bidirectional friendships, AI-generated event descriptions, squads, and events.",
       impact: "Bridges 'I'm free' and 'let's hang out' — built on Supabase auth + row-level security and real-time presence.",
       tools: ["React", "TypeScript", "Vite", "Supabase", "OpenAI"],
-      github: "https://github.com/jovinks/unimeet", // EDIT
+      github: "https://github.com/jovinks18/unimeet-app",
       live: "",
     },
     {
@@ -280,7 +287,7 @@ export const projects = {
         "A zero-dependency Node.js CLI that compresses JSON, logs, and code before pasting into LLM context windows — ~60%+ token savings while preserving schema shape.",
       impact: "Structure-preserving compression (custom JSON walker, comment stripping) to cut token cost and prevent context dilution.",
       tools: ["Node.js", "ES Modules"],
-      github: "https://github.com/jovinks/minify-context", // EDIT
+      github: "https://github.com/jovinks18/minify-context",
       live: "",
     },
     {
@@ -291,7 +298,7 @@ export const projects = {
         "An offline structured-data extraction engine that turns messy text — chat logs, resumes, emails — into schema-validated JSON, entirely locally.",
       impact: "Schema-validated outputs with Instructor + Pydantic and 100% data privacy, with zero cloud token cost.",
       tools: ["FastAPI", "Streamlit", "Instructor", "Pydantic", "Ollama"],
-      github: "https://github.com/jovinks/local-schema-compiler", // EDIT
+      github: "https://github.com/jovinks18/local-schema-compiler",
       live: "",
     },
     {
@@ -302,7 +309,7 @@ export const projects = {
         "A voice-memo app that turns raw audio into structured intelligence — categorizing, summarizing, and assessing the urgency of spoken notes.",
       impact: "Web Audio capture + OpenAI JSON mode for reliable structured output.",
       tools: ["Next.js", "GPT-4o-mini", "Web Audio API", "Tailwind"],
-      github: "https://github.com/jovinks/vocal-mind", // EDIT
+      github: "https://github.com/jovinks18/vocal-mind",
       live: "",
     },
     {
@@ -313,7 +320,7 @@ export const projects = {
         "A minimalist personal productivity dashboard that centralizes key metrics and quick-actions to reduce tab clutter.",
       impact: "A single high-focus control center with a glassmorphism aesthetic.",
       tools: ["Next.js", "React", "CSS Modules"],
-      github: "https://github.com/jovinks/my-dash", // EDIT
+      github: "https://github.com/jovinks18/my-dash",
       live: "",
     },
   ],
@@ -483,7 +490,7 @@ export const contact = {
       href: "https://www.linkedin.com/in/jovinks",
       emoji: "💼",
     },
-    { label: "GitHub", href: "https://github.com/jovinks", emoji: "🐙" },
+    { label: "GitHub", href: "https://github.com/jovinks18", emoji: "🐙" },
     { label: "Instagram", href: "https://www.instagram.com/jooficiel18/", emoji: "📷" },
     { label: "Resume", href: "/resume.pdf", emoji: "📄" },
   ],
